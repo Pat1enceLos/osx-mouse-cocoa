@@ -74,8 +74,8 @@ void Mouse::Initialize(Local<Object> exports) {
   Nan::SetPrototypeMethod(tpl, "ref", Mouse::AddRef);
   Nan::SetPrototypeMethod(tpl, "unref", Mouse::RemoveRef);
 
-  Mouse::constructor.Reset();
-  Nan::Set(exports, Nan::New<String>("Mouse").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
+  Mouse::constructor.Reset(tpl->GetFunction());
+  exports->Set(Nan::New<String>("Mouse").ToLocalChecked(), tpl->GetFunction());
 }
 
 void Mouse::Stop() {
