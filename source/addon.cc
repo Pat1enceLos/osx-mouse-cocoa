@@ -2,8 +2,6 @@
 
 using namespace v8;
 
-NAN_MODULE_INIT(Initialize) {
- 	  Mouse::Initialize(target);
-}
+void Initialize(Local<Object> exports) { Mouse::Initialize(exports); }
 
 NODE_MODULE(addon, Initialize)

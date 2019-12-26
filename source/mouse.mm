@@ -63,7 +63,7 @@ Mouse::Mouse(Nan::Callback *callback) {
 
 Mouse::~Mouse() { Stop(); }
 
-void Mouse::Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE exports) {
+void Mouse::Initialize(Local<Object> exports) {
   Nan::HandleScope scope;
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(Mouse::New);
@@ -76,7 +76,6 @@ void Mouse::Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE exports) {
 
   Mouse::constructor.Reset();
   Nan::Set(exports, Nan::New<String>("Mouse").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
-
 }
 
 void Mouse::Stop() {

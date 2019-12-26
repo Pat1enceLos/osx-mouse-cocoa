@@ -6,7 +6,7 @@
 
 class Mouse : public Nan::ObjectWrap {
 public:
-  static void Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE exports);
+  static void Initialize(v8::Local<v8::Object> exports);
   static Nan::Persistent<v8::Function> constructor;
   void Run();
   void Stop();
