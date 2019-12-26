@@ -63,7 +63,7 @@ Mouse::Mouse(Nan::Callback *callback) {
 
 Mouse::~Mouse() { Stop(); }
 
-void Mouse::Initialize(Local<Object> exports) {
+void Mouse::Initialize(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE exports) {
   Nan::HandleScope scope;
 
   Local<FunctionTemplate> tpl = Nan::New<FunctionTemplate>(Mouse::New);
@@ -74,7 +74,7 @@ void Mouse::Initialize(Local<Object> exports) {
   Nan::SetPrototypeMethod(tpl, "ref", Mouse::AddRef);
   Nan::SetPrototypeMethod(tpl, "unref", Mouse::RemoveRef);
 
-  Mouse::constructor.Reset();
+  Mouse::constructor.Reset(Nan::GetFunction(tpl).ToLocalChecked());
   Nan::Set(exports, Nan::New<String>("Mouse").ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked());
 }
 
@@ -88,7 +88,7 @@ void Mouse::Stop() {
   event_monitor = nullptr;
 }
 
-NAN_METHOD(Mouse::New) {
+NAN_METHOD(Mouse::New) {ouseu
   Nan::Callback *callback = new Nan::Callback(info[0].As<Function>());
 
   Mouse *obj = new Mouse(callback);
