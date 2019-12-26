@@ -88,7 +88,7 @@ void Mouse::Stop() {
   event_monitor = nullptr;
 }
 
-NAN_METHOD(Mouse::New) {ouseu
+NAN_METHOD(Mouse::New) {
   Nan::Callback *callback = new Nan::Callback(info[0].As<Function>());
 
   Mouse *obj = new Mouse(callback);
